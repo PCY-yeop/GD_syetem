@@ -1,0 +1,104 @@
+/* ===== Theme (배경 사진과 어울리는 톤) ===== */
+/* 기본은 전부 숨김 */
+.sistem-main-panel { display: none; }
+.sistem-main-panel.is-active { display: block; }
+
+:root{
+  --ink: #1f2f4a;          /* 네이비 텍스트 */
+  --ink-dim:#354a67;
+  --surface:#ffffff;       /* 화이트 */
+  --surface-alt:#eef3f8;   /* 활성 배경(연한 회색-블루) */
+  --line:#e3eaf2;          /* 라인 */
+  --shadow: 0 8px 22px rgba(23,43,77,.12);
+  --r: 16px;               /* 라운드 */
+}
+
+/* 탭 컨테이너(히어로 아래 흰 바 느낌) */
+.sistem-main-tab{
+  display:grid;
+  grid-template-columns: repeat(2,minmax(0,1fr)); /* 2×2 고정 */
+  gap:10px;
+  padding:12px;
+  margin:18px 0 8px;
+  border-radius: calc(var(--r) + 6px);
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(6px);
+}
+
+/* 버튼 공통 */
+.sistem-main-btn{
+  width:100%;
+  padding:16px 12px;
+  border-radius: var(--r);
+  border:1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: clamp(14px, 2.6vw, 18px);
+  letter-spacing: -.2px;
+  text-align:center;
+  cursor:pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease,
+              box-shadow .2s ease, transform .12s ease;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03);
+  word-break: keep-all; white-space: normal;
+}
+
+/* hover / focus */
+.sistem-main-btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+.sistem-main-btn:focus-visible{
+  outline:none;
+  box-shadow: 0 0 0 3px rgba(56,132,255,.28), var(--shadow);
+}
+
+/* 활성 상태: 스샷처럼 연회색-블루 칩 */
+.sistem-main-btn.is-active{
+  background: var(--surface-alt);
+  color: var(--ink);
+  border-color: #d7e2ee;
+  box-shadow: inset 0 -2px 0 rgba(255,255,255,.6);
+}
+
+/* 끝 모서리 더 둥글게(바와 일체감) */
+.sistem-main-btn:nth-child(1){ border-top-left-radius: calc(var(--r) + 8px); }
+.sistem-main-btn:nth-child(2){ border-top-right-radius: calc(var(--r) + 8px); }
+.sistem-main-btn:nth-child(3){ border-bottom-left-radius: calc(var(--r) + 8px); }
+.sistem-main-btn:nth-child(4){ border-bottom-right-radius: calc(var(--r) + 8px); }
+
+/* 얇은 분할선 느낌(선택 사항) */
+.sistem-main-btn:not(.is-active){ box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
+
+/* 상단 네비와 톤 맞추려면 텍스트 컬러만 조정 */
+.sistem-main-btn strong, .sistem-main-btn span{ color: var(--ink-dim); }
+
+/* 모션 최소화 환경 */
+@media (prefers-reduced-motion: reduce){
+  .sistem-main-btn{ transition:none }
+  .sistem-main-btn:hover{ transform:none; box-shadow:none; }
+}
+/* 여러 장을 위아래로 '딱 붙이기' */
+.subtab-panel img{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  object-fit: cover; /* 이미지가 박스를 꽉 채우게 (비율 유지) */
+}
+.img-stack{
+  display: flex;
+  flex-direction: column;
+  line-height: 0; /* 이미지 사이 미세 공백 제거 */
+}
+.img-stack img{ 
+  margin: 0 auto; 
+  margin-bottom: 40px;
+  width: 95%;
+}
+.img-complex img{
+  width: 95%;
+  margin: 0 auto; 
+  margin-bottom: 40px;
+}

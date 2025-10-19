@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/css/mobile.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="features" class="subtab-panel" data-panel="features">
+    <!-- 1차 탭: 시스템 메인 -->
+<nav class="sistem-main-tab" aria-label="시스템 메인 탭">
+  <button class="sistem-main-btn is-active" data-main="sys1">센트리 C-HOME</button>
+  <button class="sistem-main-btn" data-main="sys2">지하주차장 화재안전시스템</button>
+  <button class="sistem-main-btn" data-main="sys3">센트리 웰빙시스템</button>
+  <button class="sistem-main-btn" data-main="sys4">센트리 에코스마트시스템</button>
+</nav>
+
+<!-- 각 패널에 이미지 1장씩 -->
+  <div class="system-img">
+    <div class="sistem-main-panel is-active" data-main-panel="sys1">
+      <img src="img/sys1.png" alt="센트리 C-HOME" >
+    </div>
+  
+    <div class="sistem-main-panel" data-main-panel="sys2">
+      <img src="img/sys2.png" alt="지하주차장 화재안전시스템" >
+    </div>
+  
+    <div class="sistem-main-panel" data-main-panel="sys3">
+      <img src="img/sys3.png" alt="센트리 웰빙시스템" >
+    </div>
+  
+    <div class="sistem-main-panel" data-main-panel="sys4">
+      <img src="img/sys4.png" alt="센트리 에코스마트시스템" >
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.sistem-main-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const key = btn.dataset.main;
+    // 탭 활성 전환
+    document.querySelectorAll('.sistem-main-btn').forEach(b=>b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    // 패널 전환
+    document.querySelectorAll('.sistem-main-panel').forEach(p=>{
+      p.classList.toggle('is-active', p.dataset.mainPanel === key);
+    });
+  });
+});
+  </script>
+</section>
+</body>
+</html>
